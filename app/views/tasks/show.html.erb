@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @task.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @task.description %>
+</p>
+
+<p>
+  <b>Assigned by:</b>
+  <%= @setter.first %>
+</p>
+
+<p>
+  <b>Assigned to:</b>
+  <ul>
+  <% @doers.each do |doer| %>
+    <li><%= doer.first %></li>
+  <% end %>
+  </ul>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
