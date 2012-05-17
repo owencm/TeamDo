@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @tasks = @user.from_me_tasks
+    @tasksfromme = @user.from_me_tasks
+    @taskstome = @user.to_me_tasks
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }

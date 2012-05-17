@@ -28,7 +28,16 @@
 <p>
   <b>Tasks owned:</b>
   <ul>
-  <% @tasks.each do |task| %>
+  <% @tasksfromme.each do |task| %>
+    <li><%= task.title %></li>
+  <% end %>
+  </ul>
+</p>
+
+<p>
+  <b>Tasks assigned to this user:</b>
+  <ul>
+  <% @taskstome.each do |task| %>
     <li><%= task.title %></li>
   <% end %>
   </ul>
