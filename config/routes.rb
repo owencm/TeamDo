@@ -1,13 +1,20 @@
 Teamdo::Application.routes.draw do
+
+  get "session/new" => "session#new"
+  
+  get "session/create" => "session#create"
+
   resources :task_doers
 
   resources :groups
 
   resources :tasks
-
-  match "login" => "users#login"
-
+  
   resources :users
+
+  get "log_out" => "session#destroy", :as => "log_out"
+  get "log_in" => "session#new", :as => "log_in"
+  get "sign_up" => "users#new", :as => "sign_up"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
