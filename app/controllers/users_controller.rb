@@ -91,7 +91,6 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-end
 
   # DELETE /users/1
   # DELETE /users/1.json
