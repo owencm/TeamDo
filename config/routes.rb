@@ -5,6 +5,8 @@ Teamdo::Application.routes.draw do
 
   resources :tasks
 
+  match "login" => "users#login"
+
   resources :users
 
   # The priority is based upon order of creation:
