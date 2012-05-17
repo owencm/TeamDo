@@ -69,6 +69,29 @@ class UsersController < ApplicationController
       end
     end
   end
+  
+  # GET /users/login
+  # GET /users/login.json
+  def login
+    @users = User.all
+    respond_to do |format|
+      format.html # login.erb.html
+      format.json { render json: @users }
+    end
+  end
+  
+  # POST /users
+  # POST /users.json
+  def dologin
+    @user = User.find(params[:id])
+    session[:user] = @user
+
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'Welcome, #{user.first}.' }
+      format.json { head :no_content }
+    end
+  end
+end
 
   # DELETE /users/1
   # DELETE /users/1.json
