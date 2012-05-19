@@ -1,0 +1,35 @@
+- if notice
+  %p#notice
+    = notice
+
+%p
+  %b First:
+  = @user.first
+
+%p
+  %b Last:
+  = @user.last
+
+%p
+  %b Email:
+  = @user.email
+
+%p
+  %b Username:
+  = @user.username
+
+%p
+  %b Tasks assigned by this user:
+  %ul
+    - for task in @tasksfromme
+      %li= task.title
+
+%p
+  %b Tasks assigned to this user:
+  %ul
+    - for task in @taskstome
+      %li= task.title
+      
+= link_to 'Edit', edit_user_path(@user) 
+|
+= link_to 'Back', users_path
