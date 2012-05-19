@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   #load_and_authorize_resource #automatically authorize all actions in a RESTful style resource controller. Uses a before filter to load the resource into an instance variable and authorize it for every action.
 
-  # Catch unauthorized requests
+  #Catch unauthorized requests
   #rescue_from CanCan::AccessDenied do |exception|
   #  redirect_to root_url, :alert => exception.message
   #end
@@ -20,7 +20,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    @task = Task.find(params[:id]) #this is loaded automatically by cancan
+    @task = Task.find(params[:id]) # this is loaded automatically by cancan
     @setter = @task.setter
     @doers = @task.doers
     respond_to do |format|

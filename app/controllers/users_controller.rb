@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @tasksfromme = @user.from_me_tasks
     @taskstome = @user.to_me_tasks
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @user }
     end
   end
