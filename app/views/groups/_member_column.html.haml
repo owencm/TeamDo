@@ -1,8 +1,10 @@
 .member-column
-  .member-header
+  .member-header.column-row
     -if current_user
       You
     - else 
       =member.first
-  .section-header
+  .section-header.column-row
     Past Tasks
+  -for task in member.to_me_tasks
+    task.title

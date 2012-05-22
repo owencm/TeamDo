@@ -2,14 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "bootstrap";
+
+$dark_grey: #444;
+$middle_grey: #999;
+$light_grey: #ccc;
+$off_white: #fff;
+
 .member-column {
   width: 220px;
   float: left;
-  border: 1px solid grey;
+  border-right: 1px solid $light_grey;
   
-  .member-header {
-    margin: 10px
+  .column-row {
+    border-top: 1px solid $off_white;
+    border-bottom: 1px solid $light_grey;
   }
   
+  .member-header {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .section-header {
+    @include gradient-vertical(#fafafa, #f3f3f3);
+    padding: 6px;
+    font-size: 8pt;
+    font-weight: bold;
+    font-color: $dark_grey;
+    text-transform:uppercase;
+  }
 
 }
