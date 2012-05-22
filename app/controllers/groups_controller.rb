@@ -1,4 +1,8 @@
 class GroupsController < ApplicationController
+  def name
+    return "groups"
+  end
+
   # GET /groups
   # GET /groups.json
   def index
@@ -14,9 +18,10 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @group = Group.find(params[:id])
-
+    @group_members = @group.users
+    @user = session[:user]
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @group }
     end
   end

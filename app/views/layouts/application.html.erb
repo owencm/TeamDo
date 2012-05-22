@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Teamdo</title>
+  <title>TeamDo</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">unison.io</a>
+      <ul class="nav">
+        <li <% if controller.name == "groups" %>class="active"<% end %> >
+          <a href="/groups">Groups</a>
+        </li>
+        <li <% if controller.name == "users" %>class="active"<% end %> >
+          <a href="/users">Users</a>
+        </li>
+        <li <% if controller.name == "tasks" %>class="active"<% end %> >
+          <a href="/tasks">Tasks</a>
+        </li>
+        <% if session[:user].nil? %>
+          <li>
+            <a href="/log_in">Log in</a>
+          </li>
+        <% else %>
+          <li>
+            <a href="#">Logged in as <%= session[:user].first %></a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+ 
 <%= yield %>
 
 </body>

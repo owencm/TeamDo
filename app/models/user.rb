@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   
   attr_accessible :created, :email, :first, :last, :password, :username
   
+  has_many :group_users
+  
+  has_many :groups, :through => :group_users, :source => "group"
+  
 end

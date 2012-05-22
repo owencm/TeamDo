@@ -1,4 +1,8 @@
 class TaskDoersController < ApplicationController
+  def name
+    return "TaskDoers"
+  end
+
   # GET /task_doers
   # GET /task_doers.json
   def index

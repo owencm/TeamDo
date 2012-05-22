@@ -1,5 +1,7 @@
 Teamdo::Application.routes.draw do
 
+  resources :group_users
+
   get "sessions/new" => "sessions#new"
   
   get "sessions/create" => "sessions#create"

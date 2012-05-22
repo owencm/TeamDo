@@ -1,4 +1,8 @@
 class TasksController < ApplicationController
+  def name
+    return "tasks"
+  end
+  
   #load_and_authorize_resource #automatically authorize all actions in a RESTful style resource controller. Uses a before filter to load the resource into an instance variable and authorize it for every action.
 
   #Catch unauthorized requests

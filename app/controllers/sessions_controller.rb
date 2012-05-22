@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 
+  def name
+    "sessions"
+  end
+
   def create
     @user = User.find(params[:id])
     session[:user] = @user

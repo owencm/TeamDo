@@ -30,6 +30,6 @@
     - for task in @taskstome
       %li= task.title
       
-= link_to 'Edit', edit_user_path(@user) 
+= link_to 'Edit', edit_user_path(@user), :class => "btn"
 |
 = link_to 'Back', users_path

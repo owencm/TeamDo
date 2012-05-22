@@ -1,0 +1,11 @@
+// @group is defined
+
+- if notice
+  %p#notice
+    = notice
+  
+= render :partial => "member_column", :locals => { :member => @user, :current_user => true } #render the current user column first
+
+-for member in @group_members
+  -if member != @user 
+    = render :partial => "member_column", :locals => { :member => member, :current_user => false }
