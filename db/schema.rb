@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(:version => 20120521231202) do
   create_table "tasks", :force => true do |t|
     t.string   "title"
     t.string   "description"
+    t.integer  "setter_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.integer  "setter_id"
     t.integer  "task_id"
   end
 
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(:version => 20120521231202) do
     t.string   "last"
     t.string   "email"
     t.string   "username"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "user_id"
     t.integer  "group_id"
   end
 
