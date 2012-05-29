@@ -4,6 +4,15 @@
 
 @import "bootstrap";
 
+.navbar {
+  margin-bottom: 0px;
+
+  .navbar-inner {
+    border-radius: 0px;
+    margin-bottom: 0px;
+  }
+}
+
 $dark_grey: #444;
 $mid_dark_grey: #666;
 $mid_grey: #999;
@@ -38,6 +47,7 @@ body {
     padding: 10px;
     font-size: 14px;
     font-weight: bold;
+    border-top: 0px;
   }
   
   .section-header {
@@ -54,6 +64,7 @@ body {
     
     .action {
       float: right;
+      cursor: pointer;
       
       img {
         vertical-align: text-top;
