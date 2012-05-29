@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @group_members = @group.users
-    @user = session[:user]
+    @user = User.find(session[:user]) #Find user by session id
     respond_to do |format|
       format.html # show.html.haml
       format.json { render json: @group }

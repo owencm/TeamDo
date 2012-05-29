@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find(params[:id])
-    session[:user] = @user
+    session[:user] = @user.id
 
     respond_to do |format|
       format.html { redirect_to @user, notice: 'Welcome, '+@user.first+"." }

@@ -5,12 +5,27 @@
 @import "bootstrap";
 
 $dark_grey: #444;
-$middle_grey: #999;
+$mid_dark_grey: #666;
+$mid_grey: #999;
 $light_grey: #ccc;
 $off_white: #fff;
 
+$column_width: 220px;
+$task_padding: 7px;
+
+/*
+body {
+  background-color: #eff7fa;
+}
+*/
+
+.clear {
+  clear: both;
+}
+
 .member-column {
-  width: 220px;
+  width: $column_width;
+  height: 1000px;
   float: left;
   border-right: 1px solid $light_grey;
   
@@ -30,8 +45,54 @@ $off_white: #fff;
     padding: 6px;
     font-size: 8pt;
     font-weight: bold;
-    font-color: $dark_grey;
+    color: $mid_dark_grey;
     text-transform:uppercase;
+      
+    .title {
+      float: left;
+    }
+    
+    .action {
+      float: right;
+      
+      img {
+        vertical-align: text-top;
+        position: relative;
+        top: 1px;
+        opacity: 0.55;
+        padding-right: 2px;
+      }
+    }
+        
+  }
+  
+  .task {
+    padding: $task_padding;
+    font-weight: bold;
+    font-size: 10pt;
+    color: $dark_grey;
+    
+    .contents {
+      width: ($column_width - 2 * $task_padding) - 10;
+      float: left;
+    }
+    
+    .arrow {
+      width: 10px;
+      float: left;
+    }
+  }
+  
+  .pending {
+    @include gradient-vertical(#f1f4fd, #ebeffb);
+  }
+  
+  .new-task-btn-container { //spawn a centered button, a bit hacky...
+    text-align: center;
+      .new-task-btn {
+        width: $column_width - 30; //some amount smaller
+        margin: 5px auto;
+      }
   }
 
 }

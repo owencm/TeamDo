@@ -5,6 +5,26 @@
     - else 
       =member.first
   .section-header.column-row
-    Past Tasks
+    .title
+      Past Tasks
+    .action
+      = image_tag "older-icon.png" 
+      View Older
+    .clear
+  .section-header.column-row
+    .title
+      Current Tasks
+    .action
+      = image_tag "add-icon.png" 
+      Add
+    .clear
   -for task in member.to_me_tasks
-    task.title
+    .column-row.task.pending
+      .contents
+        =task.title
+      .arrow
+        >
+      .clear
+  .new-task-btn-container
+    .new-task-btn.btn.btn-primary
+      New Task
