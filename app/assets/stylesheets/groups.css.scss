@@ -82,20 +82,33 @@ body {
     font-weight: bold;
     font-size: 10pt;
     color: $dark_grey;
+    position: relative; //for vertical centering of arrow
     
     .contents {
-      width: ($column_width - 2 * $task_padding) - 10;
+      width: ($column_width - 2 * $task_padding) - 16; //minus arrow width
       float: left;
+      
+      title {
+        display: block;
+      }
+      
+      .actions {
+        margin-top: 5px;
+      }
     }
     
     .arrow {
-      width: 10px;
       float: left;
+      opacity: 0.4;
     }
   }
   
   .pending {
     @include gradient-vertical(#f1f4fd, #ebeffb);
+  }
+  
+  .completed {
+    @include gradient-vertical(#e8f8eb, #d7fcdb);
   }
   
   .new-task-btn-container { //spawn a centered button, a bit hacky...

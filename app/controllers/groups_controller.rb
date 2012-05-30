@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @group = Group.find(params[:id])
-    @group_members = @group.users
+    @group_members = @group.users.includes(:to_me_tasks)
     @user = User.find(session[:user]) #Find user by session id
     respond_to do |format|
       format.html # show.html.haml
