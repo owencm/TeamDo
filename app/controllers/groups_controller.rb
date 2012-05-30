@@ -19,7 +19,10 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @group_members = @group.users.includes(:to_me_tasks)
-    @user = User.find(session[:user]) #Find user by session id
+    if session[:user] != nil
+      @user = User.find(session[:user]) #Find user by session id
+    end
+    @today = Date.today.to_datetime.in_time_zone('Eastern Time (US & Canada)') - ActiveSupport::TimeZone['Eastern Time (US & Canada)'].utc_offset
     respond_to do |format|
       format.html # show.html.haml
       format.json { render json: @group }

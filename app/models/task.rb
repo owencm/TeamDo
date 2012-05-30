@@ -6,6 +6,6 @@ class Task < ActiveRecord::Base
   
   has_many :doers, :through => :task_matches, :source => "user"
 
-  attr_accessible :description, :title, :setter_id
+  attr_accessible :description, :title, :setter_id, :due_by, :completed_at
   
 end

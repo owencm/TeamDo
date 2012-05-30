@@ -4,7 +4,7 @@
       You
     - else 
       =member.first
-  -if member.to_me_tasks.find_all_by_completed_at(!nil).count > 0 #If there are tasks in the past
+  -if member.to_me_tasks.count - member.to_me_tasks.find_all_by_completed_at(nil).count > 0 #If there are tasks in the past
     .section-header.column-row
       .title
         Past Tasks
@@ -14,11 +14,10 @@
       .clear
     -for task in member.to_me_tasks
       -if task.completed_at != nil
-        .column-row.task.pending
+        .column-row.task.completed
           .contents
             =task.title
-          .arrow
-            >
+          = image_tag "horisontal-arrow.png", :class => "arrow"
           .clear
   .section-header.column-row
     .title
@@ -32,7 +31,11 @@
       No tasks outstanding
   -for task in member.to_me_tasks
     -if task.completed_at == nil
-      .column-row.task.pending
+      -if task.due_by < @today
+        -status = "late"
+      - else
+        -status = "pending"    
+      .column-row.task{:class => status}
         .contents
           %title
             =task.title

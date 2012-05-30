@@ -111,6 +111,10 @@ body {
     @include gradient-vertical(#e8f8eb, #d7fcdb);
   }
   
+  .late {
+    @include gradient-vertical(#ffefef, #ffdfdd);
+  }
+  
   .new-task-btn-container { //spawn a centered button, a bit hacky...
     text-align: center;
       .new-task-btn {
