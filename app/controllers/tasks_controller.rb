@@ -51,15 +51,22 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(params[:task])
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+    if session[:user] != nil
+      params[:task][:setter_id] = session[:user] 
+      @task = Task.new(params[:task])
+      respond_to do |format|
+        if @task.save
+          format.html { redirect_to @task, notice: 'Task was successfully created.' }
+          format.json { render json: @task, status: :created, location: @task }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @task.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        @task = Task.new
+        format.html { render action: "new", notice: 'Please log in before assigning a task.' }
       end
     end
   end
@@ -68,6 +75,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
+    params[:task][:due_by] = DateTime.parse(params[:task][:due_by])
 
     respond_to do |format|
       if @task.update_attributes(params[:task])

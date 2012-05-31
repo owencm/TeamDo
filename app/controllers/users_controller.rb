@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        redirect_to root_url, :notice => "Thanks for signing up!"
+        redirect_to users_url, :notice => "Thanks for signing up!"
       else
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }

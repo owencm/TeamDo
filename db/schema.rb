@@ -11,48 +11,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120530112213) do
+ActiveRecord::Schema.define(:version => 20120531195913) do
 
   create_table "group_users", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
+    t.integer  "user_id",    :null => false
+    t.integer  "group_id",   :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "groups", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "task_doers", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "task_id"
+    t.integer  "user_id",    :null => false
+    t.integer  "task_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "tasks", :force => true do |t|
-    t.string   "title"
+    t.string   "title",        :null => false
     t.string   "description"
-    t.integer  "setter_id"
+    t.integer  "setter_id",    :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "task_id"
     t.datetime "completed_at"
-    t.datetime "due_by"
+    t.datetime "due_by",       :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string   "first"
-    t.string   "last"
-    t.string   "email"
-    t.string   "username"
-    t.integer  "user_id"
+    t.string   "first",      :null => false
+    t.string   "last",       :null => false
+    t.string   "email",      :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "group_id"
   end
 
 end

@@ -8,4 +8,6 @@ class Task < ActiveRecord::Base
 
   attr_accessible :description, :title, :setter_id, :due_by, :completed_at
   
+  validates_presence_of :description, :title, :setter_id, :due_by
+  
 end

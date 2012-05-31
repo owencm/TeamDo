@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
   
   has_many :to_me_tasks, :through => :task_matches, :source => "task" #source indicates what to look for in the join table
   
-  attr_accessible :created, :email, :first, :last, :password, :username
+  attr_accessible :email, :first, :last, :password
+  
+  validates_presence_of :email, :first, :last, :password
   
   has_many :group_users
   
@@ -17,7 +19,7 @@ class User < ActiveRecord::Base
   end
   
   def past_tasks
-      self.to_me_tasks.where("completed_at IS NOT NULL")
+    self.to_me_tasks.where("completed_at IS NOT NULL")
   end
   
   def has_outstanding_tasks
