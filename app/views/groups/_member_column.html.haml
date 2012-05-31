@@ -25,7 +25,7 @@
       = image_tag "add-icon.png" 
       Add
     .clear
-  -if !member.has_outstanding_tasks
+  -if !member.has_outstanding_tasks	
     .column-row.task.completed
       No tasks outstanding
   -for task in member.outstanding_tasks
@@ -45,8 +45,7 @@
               Due #{(task.due_by.to_date - @today.to_date).to_int.abs} days ago
         -if current_user
           .actions
-            .btn.btn-success.btn-small
-              Mark done
+            = link_to "Mark done", task_complete_path(task), :method => :put, :class => "btn btn-success btn-small", :confirm => "Are you sure you wish to mark this task as completed?"
             .btn.btn-small
               Postpone
       = image_tag "horisontal-arrow.png", :class => "arrow"

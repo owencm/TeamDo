@@ -99,4 +99,18 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def complete
+    @task = Task.find(params[:task_id])
+    @task.completed_at = Date.today
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to @task, notice: 'Task was marked as completed.' }
+        format.json { render json: @task }
+      else
+        format.html { redirect_to @task, notice: 'An error occured marking the task as completed.' }
+        format.json { render json: @task }
+      end
+    end
+  end        
 end

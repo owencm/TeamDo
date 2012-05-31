@@ -10,7 +10,9 @@ Teamdo::Application.routes.draw do
 
   resources :groups
 
-  resources :tasks
+  resources :tasks do
+    put :complete
+  end
   
   resources :users
 

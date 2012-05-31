@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
   
   has_many :to_me_tasks, :through => :task_matches, :source => "task" #source indicates what to look for in the join table
   
-  attr_accessible :email, :first, :last, :password
+  attr_accessible :email, :first, :last
   
-  validates_presence_of :email, :first, :last, :password
+  validates_presence_of :email, :first, :last
   
   has_many :group_users
   
