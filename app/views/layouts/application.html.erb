@@ -28,7 +28,7 @@
           </li>
         <% else %>
           <li>
-            <a href="#">Logged in as <%= session[:user].first %></a>
+            <a href="#">Logged in as <%= User.find(session[:user]).first %></a>
           </li>
         <% end %>
       </ul>

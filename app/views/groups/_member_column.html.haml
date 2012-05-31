@@ -4,49 +4,53 @@
       You
     - else 
       =member.first
-  -if member.to_me_tasks.count - member.to_me_tasks.find_all_by_completed_at(nil).count > 0 #If there are tasks in the past
+  -if member.has_past_tasks
     .section-header.column-row
       .title
-        Past Tasks
+        Completed Tasks
       .action
         = image_tag "older-icon.png" 
         View Older
       .clear
-    -for task in member.to_me_tasks
-      -if task.completed_at != nil
-        .column-row.task.completed
-          .contents
-            =task.title
-          = image_tag "horisontal-arrow.png", :class => "arrow"
-          .clear
+    -for task in member.past_tasks
+      .column-row.task.completed
+        .contents
+          =task.title
+        = image_tag "horisontal-arrow.png", :class => "arrow"
+        .clear
   .section-header.column-row
     .title
-      Current Tasks
+      Outstanding Tasks
     .action
       = image_tag "add-icon.png" 
       Add
     .clear
-  -if member.to_me_tasks.find_all_by_completed_at(nil).count == 0
+  -if !member.has_outstanding_tasks
     .column-row.task.completed
       No tasks outstanding
-  -for task in member.to_me_tasks
-    -if task.completed_at == nil
-      -if task.due_by < @today
-        -status = "late"
-      - else
-        -status = "pending"    
-      .column-row.task{:class => status}
-        .contents
-          %title
-            =task.title
-          -if current_user
-            .actions
-              .btn.btn-success.btn-small
-                Mark done
-              .btn.btn-small
-                Postpone
-        = image_tag "horisontal-arrow.png", :class => "arrow"
-        .clear
+  -for task in member.outstanding_tasks
+    -if task.due_by < @today
+      -status = "late"
+    - else
+      -status = "pending"    
+    .column-row.task{:class => status}
+      .contents
+        %title
+          =task.title
+        %ul.details
+          %li.date
+            -if status != "late"
+              =task.due_by.to_date
+            -else 
+              Due #{(task.due_by.to_date - @today.to_date).to_int.abs} days ago
+        -if current_user
+          .actions
+            .btn.btn-success.btn-small
+              Mark done
+            .btn.btn-small
+              Postpone
+      = image_tag "horisontal-arrow.png", :class => "arrow"
+      .clear
   .new-task-btn-container
     .new-task-btn.btn.btn-primary
       New Task

@@ -92,6 +92,21 @@ body {
         display: block;
       }
       
+      .details {
+        opacity: .5; //TODO: cross compatible opacity
+        list-style: none;
+        margin: 5px 0 0 0;
+        padding: 0px;
+        font-size: 8pt; 
+        font-weight: normal;
+        li {
+          padding-left: 16px;
+        }
+        .date {
+          background: url(image_path('calendar-icon.png')) no-repeat 0 2px;
+        }
+      }
+      
       .actions {
         margin-top: 5px;
       }
@@ -112,7 +127,7 @@ body {
   }
   
   .late {
-    @include gradient-vertical(#ffefef, #ffdfdd);
+    @include gradient-vertical(#ffefef, #fdd6d0);
   }
   
   .new-task-btn-container { //spawn a centered button, a bit hacky...
