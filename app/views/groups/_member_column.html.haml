@@ -21,9 +21,7 @@
   .section-header.column-row
     .title
       Outstanding Tasks
-    .action
-      = image_tag "add-icon.png" 
-      Add
+    = link_to (render :partial => "add_action"), new_task_path(:group => @group, :doer => member)
     .clear
   -if !member.has_outstanding_tasks	
     .column-row.task.completed
