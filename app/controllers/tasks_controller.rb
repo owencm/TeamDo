@@ -37,9 +37,14 @@ class TasksController < ApplicationController
   # GET /tasks/new.json
   def new
     @task = Task.new
+    if !params[:doer].nil? 
+      @task.doers = [User.find(params[:doer])] 
+    end
+    @group_id = params[:group]
     @group = Group.find(params[:group])
     @task.group = @group
     @group_users = @group.users
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @task }
@@ -50,16 +55,18 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
     @group = @task.group
+    @group_id = @group.id
     @group_users = @group.users
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    if session[:user] != nil
-      params[:task][:setter_id] = session[:user] 
+    if !session[:user].nil?
+      params[:task][:setter_id] = session[:user]
       params[:task][:due_by] = DateTime.parse(params[:task][:due_by])
       params[:task][:doers] = params[:task][:doers].split(",").collect {|id| User.find(id)}
+      params[:task][:group] = Group.find(params[:task][:group])
       @task = Task.new(params[:task])
       respond_to do |format|
         if @task.save
@@ -72,7 +79,6 @@ class TasksController < ApplicationController
       end
     else
       respond_to do |format|
-        @task = Task.new
         format.html { render action: "new", notice: 'Please log in before assigning a task.' }
       end
     end
@@ -84,6 +90,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     params[:task][:due_by] = DateTime.parse(params[:task][:due_by])
     params[:task][:doers] = params[:task][:doers].split(",").collect {|id| User.find(id)}
+    params[:task][:group] = Group.find(params[:task][:group])
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { redirect_to @task.group, notice: 'Task was successfully updated.' }
