@@ -8,8 +8,8 @@ class Task < ActiveRecord::Base
   
   has_many :doers, :through => :task_matches, :source => "user"
 
-  attr_accessible :description, :title, :setter_id, :due_by, :completed_at
+  attr_accessible :description, :title, :setter_id, :due_by, :completed_at, :group_id, :doers
   
-  validates_presence_of :title, :setter_id, :due_by
+  validates_presence_of :title, :setter_id, :due_by, :group_id
   
 end

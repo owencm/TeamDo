@@ -37,6 +37,9 @@ class TasksController < ApplicationController
   # GET /tasks/new.json
   def new
     @task = Task.new
+    @group = Group.find(params[:group])
+    @task.group = @group
+    @group_users = @group.users
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @task }
@@ -46,6 +49,8 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
+    @group = @task.group
+    @group_users = @group.users
   end
 
   # POST /tasks
@@ -53,6 +58,8 @@ class TasksController < ApplicationController
   def create
     if session[:user] != nil
       params[:task][:setter_id] = session[:user] 
+      params[:task][:due_by] = DateTime.parse(params[:task][:due_by])
+      params[:task][:doers] = params[:task][:doers].split(",").collect {|id| User.find(id)}
       @task = Task.new(params[:task])
       respond_to do |format|
         if @task.save
@@ -76,10 +83,10 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     params[:task][:due_by] = DateTime.parse(params[:task][:due_by])
-
+    params[:task][:doers] = params[:task][:doers].split(",").collect {|id| User.find(id)}
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to @task.group, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -105,11 +112,11 @@ class TasksController < ApplicationController
     @task.completed_at = Date.today
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was marked as completed.' }
-        format.json { render json: @task }
+        format.html { redirect_to @task.group, notice: 'Task was marked as completed.' }
+        format.json { render json: @task.group }
       else
-        format.html { redirect_to @task, notice: 'An error occured marking the task as completed.' }
-        format.json { render json: @task }
+        format.html { redirect_to @task.group, notice: 'An error occured marking the task as completed.' }
+        format.json { render json: @task.group }
       end
     end
   end        

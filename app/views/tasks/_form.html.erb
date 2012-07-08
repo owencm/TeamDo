@@ -16,6 +16,18 @@
     <%= f.text_field :title %>
   </div><br />
   <div class="field">
+    <%= f.label :doers, "Assigned to" %>
+    <%= f.text_field :doers, :style => "display: none", :id => "task-doers" %>  
+    <ul class="user-check-list">
+      <% @group_users.each do |user| %>
+        <li><input type="checkbox" class="user-check"  user="<%= user.id %>" 
+          <% if @task.doers.exists?(user) %> checked=true <% end %> >
+          <%= user.first + " " + user.last %>
+        </li>
+      <% end %>
+    </ul>
+  </div><br />
+  <div class="field">
     <%= f.label :description %>
     <%= f.text_area :description, :rows => 5 %>
   </div><br />

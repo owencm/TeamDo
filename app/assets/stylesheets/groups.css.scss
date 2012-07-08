@@ -19,8 +19,8 @@ $mid_grey: #999;
 $light_grey: #ccc;
 $off_white: #fff;
 
-$column_width: 220px;
-$task_padding: 7px;
+$column_width: 260px;
+$task_padding: 10px;
 
 /*
 body {
@@ -31,7 +31,7 @@ body {
 .clear {
   clear: both;
 }
-
+  
 .member-column {
   width: $column_width;
   height: 1000px;
