@@ -42,10 +42,16 @@
             -else 
               Due #{(task.due_by.to_date - @today.to_date).to_int.abs} days ago
         -if current_user
-          .actions
-            = link_to "Mark done", task_complete_path(task), :method => :put, :class => "btn btn-success btn-small", :confirm => "Are you sure you wish to mark this task as completed?"
-            .btn.btn-small
-              Postpone
+          %ul.actions
+            %li.button-with-margin
+              = link_to "Mark complete", task_complete_path(task), :method => :put, :class => "btn btn-success btn-small", :confirm => "Are you sure you wish to mark this task as completed?"
+            %li.button-with-margin.dropdown
+              =link_to raw("Action<span class='caret'></span>"), "#", :class => "btn btn-small dropdown-toggle", :'data-toggle' => "dropdown"
+              %ul.dropdown-menu
+                %li
+                  = link_to "Postpone", "#"
+                  = link_to "Reassign", "#"
+                  = link_to "Comment", "#"
       = link_to image_tag("horisontal-arrow.png", :class => "arrow"), edit_task_path(task)
       .clear
   .new-task-btn-container

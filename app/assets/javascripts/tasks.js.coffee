@@ -4,10 +4,14 @@
 
 list = []
 $ ->
+
+    $('.dropdown-toggle').dropdown()
+
     for box in $(".user-check")
         if $(box).is(":checked")
             list.push $(box).attr("user")
     $("#task-doers").attr("value", list)
+
     $('.user-check').change ->
         if $(this).is(":checked")
             list.push $(this).attr("user")

@@ -11,3 +11,14 @@
 		display: inline
 	}
 }
+
+.actions {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li.button-with-margin {
+		margin-right: 5px;
+		float: left;
+	}
+}
