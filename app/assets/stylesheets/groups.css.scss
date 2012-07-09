@@ -31,6 +31,10 @@ body {
 .clear {
   clear: both;
 }
+
+#hidden-notice {
+  display: none;
+}
   
 .member-column {
   width: $column_width;

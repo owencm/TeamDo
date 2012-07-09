@@ -1,9 +1,3 @@
-// @group is defined
-
-- if notice
-  %p#notice
-    = notice
-
 -if @group_members.exists?(@user)
   = render :partial => "member_column", :locals => { :member => @user, :current_user => true } #render the current user column first
 

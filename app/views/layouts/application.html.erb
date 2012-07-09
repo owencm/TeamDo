@@ -5,6 +5,9 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "jquery-1.7.2.min" %>
+  <%= javascript_include_tag "jquery-ui-widgets"  %>
+  <%= javascript_include_tag "jquery.notify" %>
+  <% if @page_specific_scripts_in %> <%= javascript_include_tag @page_specific_scripts_in %> <% end %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -37,6 +40,8 @@
   </div>
 </div>
  
+<%= render :partial => "shared/notifications", :locals => { :notice => notice } %>
+
 <%= yield %>
 
 </body>
